@@ -1,5 +1,5 @@
-import { ICoinProperties } from '../interfaces/coinInterface';
-import { CoinModel, DEFAULT_VALID_COINS } from '../models/coinModels';
+import { ICoinProperties } from '../../interfaces/coinInterface';
+import { CoinModel, DEFAULT_VALID_COINS } from '../../models/coinModels';
 
 export function validateCoins(
   coins: ICoinProperties[],
@@ -14,8 +14,8 @@ export function checkValidCoin(
   coin: ICoinProperties,
   validCoin: ICoinProperties
 ): boolean {
-  return coin.sizeMillimetres === validCoin.sizeMillimetres &&
-    coin.weightGrams === validCoin.weightGrams;
+  return (coin?.sizeMillimetres === validCoin.sizeMillimetres &&
+    coin?.weightGrams === validCoin.weightGrams) ?? false;
 }
 
 // NOTE: In reality coins would likely have a range of weights - 

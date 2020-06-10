@@ -1,5 +1,5 @@
-import { ICoinProperties } from '../interfaces/coinInterface';
-import { CoinModel, DEFAULT_VALID_COINS } from '../models/coinModels';
+import { ICoinProperties } from '../../interfaces/coinInterface';
+import { CoinModel, DEFAULT_VALID_COINS } from '../../models/coinModels';
 
 export function getCoinDenomination(coin: ICoinProperties, validCoins: Set<CoinModel> = DEFAULT_VALID_COINS): CoinModel {
   const validCoinArray = Array.from(validCoins);
