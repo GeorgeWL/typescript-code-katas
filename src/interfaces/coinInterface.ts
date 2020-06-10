@@ -10,6 +10,6 @@ export interface ICoinProperties {
   sizeMillimetres: number;
 }
 export interface ICoin extends ICoinProperties {
-  denomination: EnumValidCoinTypes;
+  enumDenomination: EnumValidCoinTypes;
   value: number;
 }
