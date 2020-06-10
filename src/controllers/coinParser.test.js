@@ -2,15 +2,16 @@ import { getCoinDenomination } from './coinParser';
 import { COIN_DIME, COIN_NICKEL, COIN_QUARTER } from '../models/coinModels';
 describe('Coin Parser tests', () => {
   it('should return coin object from nickel', () => {
-    expect(getCoinDenomination(COIN_NICKEL.CoinProperties)).toEqual(COIN_NICKEL);
+    expect(getCoinDenomination(COIN_NICKEL.CoinProperties).CoinName).toEqual(COIN_NICKEL.CoinName);
   });
   it('should return coin object from dime', () => {
-    expect(getCoinDenomination(COIN_DIME.CoinProperties)).toEqual(COIN_DIME);
+    expect(getCoinDenomination(COIN_DIME.CoinProperties).CoinName).toEqual(COIN_DIME.CoinName);
   });
   it('should return coin object from quarter', () => {
-    expect(getCoinDenomination(COIN_QUARTER.CoinProperties)).toEqual(COIN_QUARTER);
+    expect(getCoinDenomination(COIN_QUARTER.CoinProperties).CoinName).toEqual(COIN_QUARTER.CoinName);
   });
   it('should throw error if invalid coin', () => {
-    expect(getCoinDenomination({ weightGrams: 50, sizeMillimetres: 50 })).toThrowError('Invalid Coin');
+
+    expect(getCoinDenomination({ weightGrams: 50, sizeMillimetres: 50 })).toThrow();
   });
 });
