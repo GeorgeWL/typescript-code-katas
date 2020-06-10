@@ -22,6 +22,7 @@ export default class ProductModel {
     return this.price;
   }
 }
-const PRODUCT_COLA = new ProductModel({ enumProductName: EnumProductName.cola, price: 1, amountInStock: 10 });
-const PRODUCT_CHIPS = new ProductModel({ enumProductName: EnumProductName.chips, price: .5, amountInStock: 10 });
-const PRODUCT_CANDY = new ProductModel({ enumProductName: EnumProductName.candy, price: .65, amountInStock: 10 });
+export const PRODUCT_COLA = new ProductModel({ enumProductName: EnumProductName.cola, price: 1, amountInStock: 10 });
+export const PRODUCT_CHIPS = new ProductModel({ enumProductName: EnumProductName.chips, price: .5, amountInStock: 10 });
+export const PRODUCT_CANDY = new ProductModel({ enumProductName: EnumProductName.candy, price: .65, amountInStock: 10 });
+export const DEFAULT_PRODUCTS = [PRODUCT_COLA, PRODUCT_CHIPS, PRODUCT_CANDY];
