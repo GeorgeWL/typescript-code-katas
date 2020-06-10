@@ -5,7 +5,7 @@ export enum EnumProductName {
   'candy'
 }
 
-export default interface IProduct {
+export interface IProduct {
   enumProductName: EnumProductName;
   amountInStock: number;
   price: number;

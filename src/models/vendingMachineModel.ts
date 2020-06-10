@@ -20,8 +20,12 @@ export default class VendingMachine {
     return this.rejectedCoins;
   }
 
-  public get Products(): ProductModel[] {
+  public get AllProducts(): ProductModel[] {
     return this.products;
+  }
+
+  public get ProductsInStock(): ProductModel[] {
+    return this.products.filter(product => product.IsInStock);
   }
 
   public setDisplayMessage = (newMsg: string) => {
@@ -31,4 +35,14 @@ export default class VendingMachine {
   public setAcceptedCoins = (accepted: CoinModel[]) => {
     this.acceptedCoins = accepted;
   }
+
+  public setRejectedCoins = (rejected: ICoinProperties[]) => {
+    this.rejectedCoins = rejected;
+  }
+
+  public buttonRefundAction = () => {
+    this.acceptedCoins = [];
+    this.rejectedCoins = [];
+  }
+
 }
