@@ -1,4 +1,4 @@
-import IProduct, { EnumProductName } from '../interfaces/productInterfaces';
+import { IProduct, EnumProductName } from '../interfaces/productInterfaces';
 
 export default class ProductModel {
   private enumProductName: EnumProductName;
