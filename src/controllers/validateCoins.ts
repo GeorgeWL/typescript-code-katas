@@ -1,5 +1,5 @@
-import { ICoin, ICoinProperties } from '../interfaces/coinInterface';
-import { DEFAULT_VALID_COINS, CoinModel } from '../models/coinModels';
+import { ICoinProperties } from '../interfaces/coinInterface';
+import { CoinModel, DEFAULT_VALID_COINS } from '../models/coinModels';
 
 export function validateCoins(
   coins: ICoinProperties[],
