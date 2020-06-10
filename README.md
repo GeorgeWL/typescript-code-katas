@@ -1,1 +1,1 @@
-# typescript-code-katas
+# typescript-code-kata
