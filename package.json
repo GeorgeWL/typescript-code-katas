@@ -8,11 +8,12 @@
     "lint": "eslint . --ext .js,.ts --fix",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "test:coverage": "jest --coverage && npx serve -s coverage/lcov-report"
+    "test:coverage": "jest --coverage",
+    "serve:coverage": "npm run test:coverage && npx serve -s coverage/lcov-report"
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run lint && npm run test"
+      "pre-push": "npm run lint && npm run test:coverage"
     }
   },
   "repository": {
