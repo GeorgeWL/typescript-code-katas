@@ -3,7 +3,7 @@ import { CoinModel, DEFAULT_VALID_COINS } from '../../models/coinModels';
 
 export function validateCoins(
   coins: ICoinProperties[],
-  validCoins: Set<CoinModel> = DEFAULT_VALID_COINS
+  validCoins: CoinModel[] = DEFAULT_VALID_COINS
 ): boolean[] {
   return coins.map(coin =>
     validateCoin(coin, validCoins)
@@ -22,12 +22,11 @@ export function checkValidCoin(
 // but for this kata assuming this is perfect world
 export function validateCoin(
   coin: ICoinProperties,
-  validCoins: Set<CoinModel> = DEFAULT_VALID_COINS
+  validCoins: CoinModel[] = DEFAULT_VALID_COINS
 ): boolean {
   // for each valid coin, check if coin is in set
   // return true if is
-  const validCoinArray = Array.from(validCoins);
-  const isValidCoin = validCoinArray
+  const isValidCoin = validCoins
     .map((validCoin: CoinModel) => {
       const validCoinProperties = validCoin.CoinProperties;
       // check that the coin matches any of the valid values
