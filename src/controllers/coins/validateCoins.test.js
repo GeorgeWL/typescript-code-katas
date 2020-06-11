@@ -1,5 +1,5 @@
-import { validateCoins, checkValidCoin, validateCoin } from './validateCoins';
 import { DEFAULT_VALID_COINS } from '../../models/coinModels';
+import { validateCoin, validateCoins } from './validateCoins';
 
 describe('Coin Validation Test - validateCoin', () => {
   const smallCoin = { weightGrams: .3, diameterMillimetres: .5 };
