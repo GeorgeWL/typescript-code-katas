@@ -1,25 +1,23 @@
-import { CoinModel } from './coinModels';
+import { getAcceptedAndRejected } from '../controllers/coins/coinParser';
 import { ICoinProperties } from '../interfaces/coinInterface';
+import { CoinModel } from './coinModels';
 import ProductModel from './productModel';
 import { getCurrentBalanceFromCoins } from '../controllers/machine/balanceParser';
 
-export default class VendingMachine {
+export default class VendingMachineModel {
   private acceptedCoins: CoinModel[] = [];
   private rejectedCoins: ICoinProperties[] = [];
   private products: ProductModel[] = [];
-  private displayedMessage: string = 'INSERT COIN';
   private selectedProduct: ProductModel | undefined;
-  private machineCoins: CoinModel[] = []
+  private validCoins: CoinModel[] = []
+  private insertedBalance: number = 0;
   private machineBalance: number = 0;
+  private displayedMessage: string = 'INSERT COIN';
 
-  constructor(initialProducts: ProductModel[], initialCoins: CoinModel[]) {
+  constructor(initialProducts: ProductModel[], initialValidCoins: CoinModel[], initialBalance: number) {
     this.products = initialProducts;
-    this.machineCoins = initialCoins;
-    this.machineBalance = getCurrentBalanceFromCoins(initialCoins);
-  }
-
-  public get DisplayMessage(): string {
-    return this.displayedMessage;
+    this.validCoins = initialValidCoins;
+    this.machineBalance = initialBalance;
   }
 
   public get AcceptedCoins(): CoinModel[] {
@@ -42,16 +40,42 @@ export default class VendingMachine {
     return this.selectedProduct;
   }
 
+  public get ValidCoins() {
+    return this.validCoins;
+  }
+
+  public get MachineBalance() {
+    return this.machineBalance;
+  }
+
+  public get InsertedBalance() {
+    return this.insertedBalance;
+  }
+
+  public get DisplayedMessage() {
+    return this.displayedMessage;
+  }
+
+  // computed from machine balance
+  public get CanMakeChange(): boolean {
+    if (this.selectedProduct) {
+      return (
+        this.selectedProduct.ProductPrice <= this.machineBalance ||
+        this.selectedProduct.ProductPrice <= this.insertedBalance
+      );
+    }
+    return false;
+  }
+
   public setDisplayMessage = (newMsg: string) => {
     this.displayedMessage = newMsg;
   }
 
-  public setAcceptedCoins = (accepted: CoinModel[]) => {
+  public setCoinsAndBalance = (coins: ICoinProperties[]) => {
+    const { accepted, rejected } = getAcceptedAndRejected(coins);
     this.acceptedCoins = accepted;
-  }
-
-  public setRejectedCoins = (rejected: ICoinProperties[]) => {
     this.rejectedCoins = rejected;
+    this.insertedBalance = getCurrentBalanceFromCoins(this.acceptedCoins);
   }
 
   public setSelectedProduct = (product: ProductModel) => {

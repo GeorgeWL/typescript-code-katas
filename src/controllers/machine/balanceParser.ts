@@ -3,7 +3,7 @@ import ProductModel from '../../models/productModel';
 // intent is it never will see invalid coins, but just in case, nullish coalesces into 0
 export function getCurrentBalanceFromCoins(coins: CoinModel[]): number {
   const balances: number[] = coins.map(coin => coin?.CoinValue ?? 0);
-  const totalBalance: number = balances.reduce((prev, next) => prev + next);
+  const totalBalance: number = balances.length > 0 ? balances.reduce((prev, next) => prev + next) : 0;
   // can't have a fractional coin, only two decimal places
   return parseFloat(totalBalance.toFixed(2));
 }
