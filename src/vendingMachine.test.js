@@ -80,6 +80,6 @@ describe('Feature Select Product', () => {
   });
   it('can purchase item with correct balance', () => {
 
-  })
-  vendingMachineInstance
+  });
+  vendingMachineInstance;
 });

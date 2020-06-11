@@ -1,4 +1,4 @@
-import { CoinModel } from "../models/coinModels";
+import { CoinModel } from '../models/coinModels';
 
 // NOTE: Though there's also cent, half dollar and dollar, gonna assume machine only accepts these denominations
 export enum EnumValidCoinTypes {
