@@ -31,12 +31,47 @@ describe('parse rejected and accepted', () => {
     expect(getAcceptedAndRejected(coins)).toEqual({ accepted: [], rejected: coins });
 
   });
-  it('returns parsed as undefined values coin array inside of rejected value of object if all invalid and not coins', () => {
-    const coins = [undefined, 'dime', false];
-    const expected = coins.map(() => ({
-      diameterMillimetres: undefined,
-      weightGrams: undefined
-    }));
+  it('returns parsed as values coin array inside of rejected value of object if all invalid and not valid coin properties', () => {
+    // NOTE: In theory the hardware which reads the weight and/or size could fail, this should then reject the coin
+    const coins = [undefined, 'dime', false, true, {}, Infinity, 7, { diameterMillimetres: 10 }, { weightGrams: 10 }];
+    const expected = [
+      {
+        diameterMillimetres: undefined,
+        weightGrams: undefined
+      },
+      {
+        diameterMillimetres: undefined,
+        weightGrams: undefined
+      },
+      {
+        diameterMillimetres: undefined,
+        weightGrams: undefined
+      },
+      {
+        diameterMillimetres: undefined,
+        weightGrams: undefined
+      },
+      {
+        diameterMillimetres: undefined,
+        weightGrams: undefined
+      },
+      {
+        diameterMillimetres: undefined,
+        weightGrams: undefined
+      },
+      {
+        diameterMillimetres: undefined,
+        weightGrams: undefined
+      },
+      {
+        diameterMillimetres: 10,
+        weightGrams: undefined
+      },
+      {
+        diameterMillimetres: undefined,
+        weightGrams: 10
+      },
+    ];
     expect(getAcceptedAndRejected(coins)).toEqual({ accepted: [], rejected: expected });
   });
   it('if some valid and some invalid, returns parsed valid coins in accepted, and original unparsed invalid in rejected', () => {
