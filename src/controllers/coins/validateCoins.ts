@@ -10,11 +10,11 @@ export function validateCoins(
   );
 }
 
-export function checkValidCoin(
+function checkValidCoin(
   coin: ICoinProperties,
   validCoin: ICoinProperties
 ): boolean {
-  return (coin?.sizeMillimetres === validCoin.sizeMillimetres &&
+  return (coin?.diameterMillimetres === validCoin.diameterMillimetres &&
     coin?.weightGrams === validCoin.weightGrams) ?? false;
 }
 
